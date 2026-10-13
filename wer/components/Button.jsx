@@ -1,8 +1,10 @@
-function Button ({children, type="button",onClick}){
-    return (
-        <button type= {type} onClick={onClick} className="shelf-button">
+import './css.css'
+
+function Button ({children, type = 'button', onClick}){
+    return(
+        <button className='btn' type={type} onClick={onClick}>
             {children}
         </button>
     )
 }
-export default Button
+export default Button;

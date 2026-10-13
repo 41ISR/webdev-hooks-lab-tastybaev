@@ -1,13 +1,15 @@
-function SearchBar({ value, onChange, placeholder, type="text" }) {
-  return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="shelf-input"
+import './css.css'
+
+function Input ({value, onChange, placeholder}) {
+    return (
+    <Input
+    className="input"
+    type="text"
+    value={value}
+    placeholder={{placeholder}}
+    onChange={(e) => onChange(e.target.value)}
     />
-  );
+    )
 }
 
-export default  SearchBar
+export default Input

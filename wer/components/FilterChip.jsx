@@ -1,12 +1,11 @@
-function FilterChip({label, isActive, onClick}) {
+import './css.css'
+function FilterChip ({checked, onChange, children }) {
     return (
-        <button
-        type="button"
-        onClick={onClick}
-        className={`filter-chip ${isActive ? "active" : ""}` }
-    >
-        {button}
-    </button>    
+      <div className='filter-chip'>
+        <input type='checkbox' id='filterCheckbox' checked={checked} onChange={onChange}/>
+        <label hrmlFor='filterCheckbox'>{children}</label>
+      </div>
     )
 }
-export default FilterChip
+
+export default FilterChip;

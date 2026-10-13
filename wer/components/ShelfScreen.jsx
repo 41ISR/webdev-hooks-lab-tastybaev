@@ -1,42 +1,41 @@
 import BookForm from "./BookForm";
-import BookList from "./BookList";
 import FilterChip from "./FilterChip";
+import BookList from "./BookList";
+import './css.css'
 
 function ShelfScreen({
     books,
     showOnlyUnread,
+    onToggleUnread,
+    onAdd,
     onToggleRead,
     onDelete,
-    onToggleFilter
 }) {
-    const filteredBooks = showOnlyUnread
-    ? books.filter((book) => !book.read) :books
+    const visibleBooks = showOnlyUnread
+    ? books.filter((book)=> !book.read)
+    : books;
 
     return (
+       <div className="app">
+        <div className="app-header">
+            <div className="brand">
+                <div className="brand-mark">S</div>
+                <div className="brand-name">Shelf</div>
+            </div>
+        </div>
         <section className="screen active" id="screen-shelf">
-        <p className="greeting">Добрый вечер</p>
-      <div className="add-book-row">
-        <input
-          className="input"
-          id="bookInput"
-          placeholder="Название книги..."
-        />
-        <button className="btn" id="addBtn">
-          Добавить на полку
-        </button>
-      </div>
-      <div className="list-toolbar">
-        <span className="toolbar-title">Книги</span>
-        <div className="filter-chip">
-          <input type="checkbox" id="filterCheckbox" />
-          <label htmlFor="filterCheckbox">
-            <span className="dot" />
-            Только непрочитанные
-          </label>
-          </div>
-      </div>
-      </section>
+            <p className="greeting">Добрый вечер</p>
+            <BookForm onAdd={onAdd}/>
+            <div className="list-toolbar">
+                <span className="toolbar-title">Книги</span>
+                <FilterChip checked={showOnlyUnread} onChange={onToggleRead}>
+                    Только непрочитанные
+                </FilterChip>
+                <BookList books={visibleBooks} onToggleRead={onToggleRead} onDelete={onDelete} />
+            </div>
+        </section>
+       </div>
     )
-
 }
- 
+
+export default ShelfScreen
